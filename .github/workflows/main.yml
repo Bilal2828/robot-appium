@@ -3,7 +3,7 @@ name: Test Automation
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   run-smoke-tests:
