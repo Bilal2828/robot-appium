@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1 (Python 3.10.0 on win32)" generated="20230821 11:42:45.669" rpa="false" schemaversion="4">
+<suite id="s1" name="1" source="C:\Users\kuecuekkaya\PycharmProjects\robotautomation\1.robot">
+<test id="s1-t1" name="Opening browser" line="13">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>headlesschrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230821 11:42:46.301" level="INFO">Opening browser 'headlesschrome' to base url 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login'.</msg>
+<status status="PASS" starttime="20230821 11:42:46.294" endtime="20230821 11:42:48.612"/>
+</kw>
+<kw name="Set Browser Implicit Wait" library="SeleniumLibrary">
+<arg>3</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20230821 11:42:48.613" endtime="20230821 11:42:48.615"/>
+</kw>
+<kw name="LoginKeyword">
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name=username</arg>
+<arg>@{Credentials}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230821 11:42:48.616" level="INFO">Typing text 'Admin' into text field 'name=username'.</msg>
+<status status="PASS" starttime="20230821 11:42:48.615" endtime="20230821 11:42:49.038"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230821 11:42:52.044" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20230821 11:42:49.038" endtime="20230821 11:42:52.045"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>name=password</arg>
+<arg>admin123</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20230821 11:42:52.047" level="INFO">Typing password into text field 'name=password'.</msg>
+<msg timestamp="20230821 11:42:52.085" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20230821 11:42:52.153" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20230821 11:42:52.046" endtime="20230821 11:42:52.153"/>
+</kw>
+<status status="PASS" starttime="20230821 11:42:48.615" endtime="20230821 11:42:52.154"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>das pw ist @{Credentials}</arg>
+<arg>console=true</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230821 11:42:52.154" level="INFO">das pw ist ['Admin', 'admin123']</msg>
+<status status="PASS" starttime="20230821 11:42:52.154" endtime="20230821 11:42:52.154"/>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<arg>xpath=//*[@id="app"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20230821 11:42:52.155" level="INFO">Clicking button 'xpath=//*[@id="app"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button'.</msg>
+<status status="PASS" starttime="20230821 11:42:52.155" endtime="20230821 11:42:52.228"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>class=oxd-userdropdown-name</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230821 11:42:52.229" level="INFO">Clicking element 'class=oxd-userdropdown-name'.</msg>
+<status status="PASS" starttime="20230821 11:42:52.228" endtime="20230821 11:42:53.356"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>link=Logout</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230821 11:42:53.357" level="INFO">Clicking element 'link=Logout'.</msg>
+<status status="PASS" starttime="20230821 11:42:53.357" endtime="20230821 11:42:54.486"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20230821 11:42:57.491" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20230821 11:42:54.486" endtime="20230821 11:42:57.492"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230821 11:42:57.492" endtime="20230821 11:42:59.568"/>
+</kw>
+<status status="PASS" starttime="20230821 11:42:46.294" endtime="20230821 11:42:59.568"/>
+</test>
+<status status="PASS" starttime="20230821 11:42:45.669" endtime="20230821 11:42:59.568"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="1">1</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

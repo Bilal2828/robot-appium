@@ -1,0 +1,37 @@
+stages:
+  - smoke
+  - regression
+
+image: marketsquare/robotframework-browser
+
+before_script:
+  - whereis python
+  - pip install -r requirements.txt
+  - export INFLUXDB_URL="https://us-east-1-1.aws.cloud2.influxdata.com"   # Setze die InfluxDB-URL entsprechend deiner Cloud-Instanz
+  - export INFLUXDB_TOKEN="G_4ZvuD6iCdmSkieaw2lAfnl3Q8G1TD27saWrM_jS6ueKtXE4V_QZ3uzbr3tDQmkH0EWBmOYNFhw2HiZBWLoXg=="   # Setze das Access Token, das du in InfluxDB erstellt hast
+  - export INFLUXDB_ORG="dev"
+  - export INFLUXDB_BUCKET="test_results_gitlab"   # Setze den Namen der Datenbank (Bucket), in die die Testergebnisse gespeichert werden sollen
+
+
+
+run-smoke-tests:
+  stage: smoke
+  allow_failure: true
+  script:
+      - robot  test || true
+      - python3 store_results.py
+  artifacts:
+    paths:
+      - reports
+      - output.xml
+
+run-regression-tests:
+  stage: regression
+  allow_failure: true
+  script:
+    - robot test || true
+    - python3 store_results.py
+  artifacts:
+    paths:
+      - reports
+      - output.xml
