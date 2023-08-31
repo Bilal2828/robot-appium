@@ -5,72 +5,71 @@ on:
     branches:
       - master
 
-
 jobs:
   run-smoke-tests:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-        export INFLUXDB_URL="https://us-east-1-1.aws.cloud2.influxdata.com"
-        export INFLUXDB_TOKEN="G_4ZvuD6iCdmSkieaw2lAfnl3Q8G1TD27saWrM_jS6ueKtXE4V_QZ3uzbr3tDQmkH0EWBmOYNFhw2HiZBWLoXg=="
-        export INFLUXDB_ORG="dev"
-        export INFLUXDB_BUCKET="test_results_github"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          export INFLUXDB_URL="https://us-east-1-1.aws.cloud2.influxdata.com"
+          export INFLUXDB_TOKEN="G_4ZvuD6iCdmSkieaw2lAfnl3Q8G1TD27saWrM_jS6ueKtXE4V_QZ3uzbr3tDQmkH0EWBmOYNFhw2HiZBWLoXg=="
+          export INFLUXDB_ORG="dev"
+          export INFLUXDB_BUCKET="test_results_github"
 
-    - name: Run smoke tests
-      run: |
-        robot test || true
-        python3 store_results.py
-      continue-on-error: true
+      - name: Run smoke tests
+        run: |
+          robot test || true
+          python3 store_results.py
+        continue-on-error: true
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: |
-          reports
-          output.xml
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: |
+            reports
+            output.xml
 
   run-regression-tests:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
 
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-        export INFLUXDB_URL="https://us-east-1-1.aws.cloud2.influxdata.com"
-        export INFLUXDB_TOKEN="G_4ZvuD6iCdmSkieaw2lAfnl3Q8G1TD27saWrM_jS6ueKtXE4V_QZ3uzbr3tDQmkH0EWBmOYNFhw2HiZBWLoXg=="
-        export INFLUXDB_ORG="dev"
-        export INFLUXDB_BUCKET="test_results_github"
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          export INFLUXDB_URL="https://us-east-1-1.aws.cloud2.influxdata.com"
+          export INFLUXDB_TOKEN="G_4ZvuD6iCdmSkieaw2lAfnl3Q8G1TD27saWrM_jS6ueKtXE4V_QZ3uzbr3tDQmkH0EWBmOYNFhw2HiZBWLoXg=="
+          export INFLUXDB_ORG="dev"
+          export INFLUXDB_BUCKET="test_results_github"
 
-    - name: Run regression tests
-      run: |
-        robot test || true
-        python3 store_results.py
-      continue-on-error: true
+      - name: Run regression tests
+        run: |
+          robot test || true
+          python3 store_results.py
+        continue-on-error: true
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: |
-          reports
-          output.xml
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: |
+            reports
+            output.xml
